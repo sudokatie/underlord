@@ -13,6 +13,8 @@ You start with a dungeon heart (protect it), some gold (spend it wisely), and a 
 3. **Attract creatures** - Build the right rooms and creatures will come. Hatcheries attract beetles, libraries attract warlocks, etc.
 4. **Survive waves** - Heroes attack periodically. Each wave is harder than the last. If they destroy your dungeon heart, game over.
 
+Retro synthesized sound effects accompany all key actions - digging, building, spawning creatures, and combat.
+
 ## Controls
 
 | Key | Action |

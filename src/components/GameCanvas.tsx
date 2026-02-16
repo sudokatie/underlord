@@ -15,6 +15,7 @@ import {
 import { renderGame } from './Renderer';
 import { CANVAS_WIDTH, CANVAS_HEIGHT, TILE_SIZE, ROOM_COSTS } from '../game/constants';
 import { canPlaceRoom } from '../game/Room';
+import { Sound } from '../game/Sound';
 import TitleScreen from './TitleScreen';
 import TopBar from './TopBar';
 import SidePanel from './SidePanel';
@@ -103,6 +104,7 @@ export default function GameCanvas() {
 
       // Summon imp
       if (e.key.toLowerCase() === 'i') {
+        Sound.play('spawn');
         setGameState((prev) => {
           const newState = { ...prev };
           summonImp(newState);
@@ -144,9 +146,14 @@ export default function GameCanvas() {
 
       if (prev.selectedRoom !== RoomType.NONE) {
         // Try to place room
+        const prevRoomCount = prev.rooms.length;
         tryPlaceRoom(newState, { x, y }, prev.selectedRoom);
+        if (newState.rooms.length > prevRoomCount) {
+          Sound.play('build');
+        }
       } else {
         // Try to designate dig
+        Sound.play('dig');
         designateDig(newState, { x, y });
       }
 

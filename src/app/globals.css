@@ -25,3 +25,28 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Responsive game layout */
+@media (max-width: 768px) {
+  /* Make canvas responsive */
+  canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
+  
+  /* Stack side panel below on mobile */
+  .flex.relative {
+    flex-direction: column;
+  }
+  
+  /* Smaller text on mobile */
+  .text-sm {
+    font-size: 0.7rem;
+  }
+  
+  /* Smaller buttons */
+  button {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}

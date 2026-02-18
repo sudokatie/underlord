@@ -22,6 +22,7 @@ import SidePanel from './SidePanel';
 import MessageLog from './MessageLog';
 import GameOver from './GameOver';
 import PauseMenu from './PauseMenu';
+import VirtualControls from './VirtualControls';
 
 const WAVE_INTERVAL = 120; // seconds
 
@@ -306,6 +307,38 @@ export default function GameCanvas() {
           onQuit={handleQuitToTitle}
         />
       )}
+      
+      <VirtualControls
+        paused={gameState.paused}
+        onPause={handleResume}
+        onSummonImp={() => {
+          Sound.play('spawn');
+          handleSummonImp();
+        }}
+        onRoomSelect={(index) => {
+          const roomTypes = [
+            RoomType.LAIR,
+            RoomType.HATCHERY,
+            RoomType.LIBRARY,
+            RoomType.TRAINING,
+            RoomType.TREASURY,
+            RoomType.WORKSHOP,
+            RoomType.PRISON,
+            RoomType.TORTURE,
+          ];
+          handleSelectRoom(roomTypes[index]);
+        }}
+        selectedRoom={gameState.selectedRoom === RoomType.NONE ? null : [
+          RoomType.LAIR,
+          RoomType.HATCHERY,
+          RoomType.LIBRARY,
+          RoomType.TRAINING,
+          RoomType.TREASURY,
+          RoomType.WORKSHOP,
+          RoomType.PRISON,
+          RoomType.TORTURE,
+        ].indexOf(gameState.selectedRoom)}
+      />
     </div>
   );
 }

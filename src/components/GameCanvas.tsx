@@ -16,6 +16,7 @@ import { renderGame } from './Renderer';
 import { CANVAS_WIDTH, CANVAS_HEIGHT, TILE_SIZE, ROOM_COSTS } from '../game/constants';
 import { canPlaceRoom } from '../game/Room';
 import { Sound } from '../game/Sound';
+import { Music } from '../game/Music';
 import TitleScreen from './TitleScreen';
 import TopBar from './TopBar';
 import SidePanel from './SidePanel';
@@ -68,6 +69,22 @@ export default function GameCanvas() {
       }
     };
   }, [gameState.screen, gameLoop]);
+
+  // Switch music track based on game screen
+  useEffect(() => {
+    switch (gameState.screen) {
+      case GameScreen.TITLE:
+      case GameScreen.PAUSED:
+        Music.play('menu');
+        break;
+      case GameScreen.PLAYING:
+        Music.play('gameplay');
+        break;
+      case GameScreen.GAME_OVER:
+        Music.play('gameover');
+        break;
+    }
+  }, [gameState.screen]);
 
   // Keyboard controls
   useEffect(() => {
